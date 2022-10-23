@@ -29,6 +29,9 @@ void GetUEVerOverride(int16_t UEMajorVerOverride, int16_t UEMinorVerOverride) ->
 			case (UEMinorVerOverride = 02):
 				UEVer = EUnrealVersion::UE5_02;
 				break;
+			default:
+				UEVer = EUnrealVersion::NONE;
+				break;
 			}
 		}
 		else if (UEMajorVerOverride(4))
