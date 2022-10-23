@@ -159,6 +159,7 @@
     <ClInclude Include="unrealEnums.h" />
     <ClInclude Include="unrealContainers.h" />
     <ClInclude Include="unrealFunctions.h" />
+    <ClInclude Include="UnrealVersion.h" />
     <ClInclude Include="uobjectDependency.h" />
     <ClInclude Include="writer.h" />
   </ItemGroup>
@@ -174,6 +175,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="scanning.cpp" />
+    <ClCompile Include="UnrealVersion.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

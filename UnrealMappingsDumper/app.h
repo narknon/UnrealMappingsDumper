@@ -4,11 +4,16 @@
 
 enum class EUnrealVersion
 {
+	NONE,
 	UE4_26,
 	UE4_27,
 	UE5,
-	UE5_01
+	UE5_01,
+	UE5_02
 };
+
+void GetUEVerOverride(int16_t UEMajorVerOverride, int16_t UEMinorVerOverride) ->  std::pair<bool, EUnrealVersion>;
+
 
 IDumper* CreateAppInstance(EUnrealVersion Version);
 

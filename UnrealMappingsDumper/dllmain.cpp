@@ -1,6 +1,7 @@
 #include "pch.h"
 
 #include "app.h"
+#include "UnrealVersion.h"
 
 #define CLEANUP() \
 	delete App; \
@@ -19,7 +20,13 @@ void WINAPI Main(HMODULE Module)
 
 	UE_LOG("Unreal Mappings Dumper created by OutTheShade");
 
-	auto App = CreateAppInstance(EUnrealVersion::UE5); // TODO: a way to determine the engine version at runtime
+	int16_t UEVerOverMaj = 5;
+	int16_t UEVerOverMin = 0;
+	
+	auto [bVerOverride, UEVer] = GetUEVerOverride(UEVerOverMaj, UEVerOverMin);
+	
+
+	auto App = CreateAppInstance(UEVer); // TODO: a way to determine the engine version at runtime
 	 
 	if (!App) 
 	{

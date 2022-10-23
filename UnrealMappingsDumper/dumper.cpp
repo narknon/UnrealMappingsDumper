@@ -9,6 +9,7 @@
 template <typename Engine>
 bool Dumper<Engine>::Init(uintptr_t GObjectsOverride, uintptr_t FNameToStringOverride)
 {
+	
 	if (GObjectsOverride)
 		Engine::ObjObjects::SetInstance(GObjectsOverride);
 

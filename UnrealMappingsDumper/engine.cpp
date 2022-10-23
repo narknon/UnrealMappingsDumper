@@ -200,6 +200,18 @@ void DefaultEngine<T>::ObjObjects::ForEach(std::function<void(UObject*&)> Action
 }
 
 template <typename T>
+std::vector<std::shared_ptr<IScanObject>> DefaultEngine<T>::GetEngineVerPattrns()
+{
+	return
+	{
+		// 5.x.x
+		std::make_shared<PatternScanObject>("05 00 ?? 00 ?? 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? 00 00 ?? 00 00 00 ?? 00 00 00 05 00 ?? 00 ?? 00 00 00", 1, true),
+		// 4.x.x
+		std::make_shared<PatternScanObject>("04 00 ?? 00 ?? 00 00 00 ?? ?? ?? ?? 00 00 00 00 ?? ?? ?? ?? ?? ?? 00 00 ?? 00 00 00 ?? 00 00 00 04 00 ?? 00 ?? 00 00 00", 1, true),
+	};
+}
+
+template <typename T>
 std::vector<std::shared_ptr<IScanObject>> DefaultEngine<T>::GetFNameStringPattrns() // TODO: add more
 {
 	return
@@ -221,6 +233,8 @@ std::vector<std::shared_ptr<IScanObject>> DefaultEngine<T>::GetGObjectsPatterns(
 		std::make_shared<PatternScanObject>("48 8B 05 ? ? ? ? 48 8B 0C", 3, true)
 	};
 }
+
+
 
 template class DefaultEngine<UObjectDependency>;
 template class DefaultEngine<FortniteUObjectBase>;
