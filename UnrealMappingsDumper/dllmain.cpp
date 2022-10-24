@@ -24,10 +24,30 @@ void WINAPI Main(HMODULE Module)
 	int16_t UEVerOverMin = 0;
 	
 	auto [bVerOverride, UEVer] = GetUEVerOverride(UEVerOverMaj, UEVerOverMin);
-	
 
+	if (!bVerOverride || UEVer == EUnrealVersion::NONE)
+	{
+		UE_LOG("No version override found, attempting to scan for version...");
+		uintptr_t UEVerAddy = 0;
+
+		for (auto Scan : Engine::GetEngineVerPattrns())
+		{
+			UEVerAddy = Scan->TryFind();
+
+			if (UEVerAddy)
+				break;
+		}
+
+		if (!UEVerAddy)
+		{
+			UE_LOG("Could not find the address for the Engine Version. Using default UE5.0.");
+			return false;
+		}
+	}
+	
+	
 	auto App = CreateAppInstance(UEVer); // TODO: a way to determine the engine version at runtime
-	 
+	
 	if (!App) 
 	{
 		UE_LOG("Couldn't instantiate dumper instance. Returning.");
